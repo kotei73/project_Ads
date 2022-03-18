@@ -6,19 +6,28 @@
 </head>
 <body>
         <h1>Объявления</h1>
-        {% for ad in adsf %}
-        <h2>{{ad.title}}</h2>
-        <p>{{ad.content}}</p>
-        <div>
-        {% if ad.price == 1 %}
-        <p>{{ad.price}} рубль</p>
-        {% elif ad.price < 5 %}
-        <p>{{ad.price}} рубля</p>
-        {% else %}
-        <p>{{ad.price}} рублей</p>
-        {% endif %}
-        </div>
-        <p>{{ad.published}}</p><br>
-        {% endfor %}
+        <h2>{{Current_rubric}}</h2>
+                <div>
+                        <a href="/advert/">Главная</a>
+                        {% for rubric in rubrics %}
+                        <a href="/advert/{{rubric.pk}}">{{rubric.name}}</a>
+                        {% endfor %}
+                </div>
+
+                {% for ad in ads %}
+                <h2>{{ad.title}}</h2>
+                <p>{{ad.content}}</p>
+                <div>
+                {% if ad.price == 1 %}
+                <p>{{ad.price}} рубль</p>
+                {% elif ad.price < 5 %}
+                <p>{{ad.price}} рубля</p>
+                {% else %}
+                <p>{{ad.price}} рублей</p>
+                {% endif %}
+                </div>
+                <p>{{ad.published}}</p>
+                <p><a href="/advert/{{ad.rubric.pk}}">{{ad.rubric.name}}</a></p><br>
+                {% endfor %}
 </body>
 </html>
