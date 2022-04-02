@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Рубрики</title>
-</head>
-<body>
-    <h1>Объявления</h1>
-    <h2>{{Current_rubric}}</h2>
-    <div>
-        <a href="{% url 'index' %}">Главная</a>
-        {% for rubric in rubrics %}
-        <a href="{% url 'by_rubric' rubric.pk %}">{{rubric.name}}</a>
-        {% endfor %}
-        <a href="{% url 'add' %}">Добавить</a>
-    </div>
+{% extends 'layout/base.html' %}
+    {% block head %}<h1>{{current_rubric.name}}</h1>{% endblock %}
+    {% block content %}
     {% for ad in ads %}
         <h2>{{ad.title}}</h2>
         <p>{{ad.content}}</p>
@@ -29,5 +16,4 @@
         <p>{{ad.published}}</p>
         <p><a href="{% url 'by_rubric' ad.rubric.pk %}">{{ad.rubric.name}}</a></p><br>
         {% endfor %}
-</body>
-</html>
+    {% endblock %}

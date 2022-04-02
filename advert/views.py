@@ -10,6 +10,8 @@ from .forms import AdsForm
 def index(request):
     ads = Ads.objects.all()
     rubrics = Rubric.objects.all()
+    visit = request.session.get('visit', 0)
+    request.session['visit'] = visit + 1
     context = {'ads': ads, 'rubrics': rubrics}
     return render(request, 'advert/index.html', context)
 
